@@ -33,47 +33,12 @@ int main() {
                           << product->get_item_availability() << "\n";
             }
         } 
-        else if (choice == '2') {
-            std::string name;
-            double price;
-            int quantity;
-            std::cout << "Enter product name: ";
-            std::cin >> name;
-            std::cout << "Enter price: ";
-            std::cin >> price;
-            std::cout << "Enter quantity: ";
-            std::cin >> quantity;
-            inventory.add_product(std::make_shared<product>(name, price, quantity));
-        } 
         else if (choice == '3') {
             std::string name;
             std::cout << "Enter product name to remove: ";
             std::cin >> name;
-            auto product = inventory.find_product(name);
-            if (product) inventory.remove_product(product);
+            inventory.remove_product(name);
         } 
-        else if (choice == '4') {
-            std::string name;
-            int change;
-            std::cout << "Enter product name: ";
-            std::cin >> name;
-            std::cout << "Enter quantity change (+/-): ";
-            std::cin >> change;
-            auto product = inventory.find_product(name);
-            if (product) inventory.update_inventory_product(product, change);
-        } 
-        else if (choice == '5') {
-            std::string name;
-            std::cout << "Enter product name: ";
-            std::cin >> name;
-            auto product = inventory.find_product(name);
-            if (product) {
-                std::cout << "Product found: " << product->get_name() 
-                          << " - Stock: " << product->get_item_availability() << "\n";
-            } else {
-                std::cout << "Product not found.\n";
-            }
-        }
 
     } while (choice != '6');
 
