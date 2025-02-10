@@ -1,0 +1,29 @@
+CXX = g++
+CXXFLAGS = -std=c++17 -Wall -Wextra -g
+
+# Target executable name
+TARGET = inventory_program
+
+# Source files
+SRCS = main.cpp inventory.cpp category.cpp product.cpp
+# Object files generated from source files
+OBJS = $(SRCS:.cpp=.o)
+
+# Default target: compile the full project
+all: $(TARGET)
+
+# Rule for linking the executable
+$(TARGET): $(OBJS)
+	$(CXX) $(OBJS) -o $@
+
+# Rule for compiling each source file into an object file
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# Clean up generated files
+clean:
+	rm -f $(OBJS) $(TARGET)
+
+# Run the program after compiling
+run: all
+	./$(TARGET)
